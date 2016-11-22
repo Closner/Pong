@@ -1,20 +1,9 @@
 %+-------------------------------------------------------+%
-%|                DAVE'S MATLAB PONG v0.3                |%
-%|                  by David Buckingham                  |%
+%|                    MATLAB PONG v0.3                   |%
+%|                     by Drew & Alex                    |%
 %|                                                       |%
 %| a fast-paced two-player game inspired by Atari's Pong |%
 %+-------------------------------------------------------+%
-
-%v0.3
-%fixed bug where ball bouncing off right or left wall caused goal.
-%paddle height reduced.
-%ball acceleration reduced.
-%changed colors and aesthetics.
-%increased winning score to 5.
-%main figure is wider and less tall. no change to plot dimensions.
-
-%v0.2
-%fixed bug where ball gets 'stuck' along top or bottom wall.
 
 function [] = Pong()
 
@@ -32,7 +21,7 @@ FRAME_DELAY = .01; %animation frame duration in seconds, .01 is good.
 MIN_BALL_SPEED = 1; %each round ball starts at this speed
 MAX_BALL_SPEED = 5; %wont accelerate past this, dont set too high or bugs.
 BALL_ACCELERATION = 0.1; %how much ball accelerates each bounce.
-PADDLE_SPEED = 1.3;
+PADDLE_SPEED = 2;
 %B_FACTOR and P_FACTOR increase the ball's dx/dy, i.e. making it move
 %more horizontaly and less vertically. When the ball bounces, B_FACTOR
 %is used to calculate a random variance in the resulting ball vector.
@@ -72,7 +61,7 @@ PADDLE_SPACE = 10; %space between paddle and goal
 %appearance
 FIGURE_COLOR = [0, 0, 0]; %program background
 AXIS_COLOR = [.15, .15, .15]; %the court
-CENTER_RADIUS = 15; %radius of circle in center of court.
+CENTER_RADIUS = 20; %radius of circle in center of court.
 BALL_MARKER_SIZE = 10; %aesthetic, does not affect physics, see BALL_RADIUS
 BALL_COLOR = [.1, .7, .1];
 BALL_OUTLINE = [.7, 1, .7];

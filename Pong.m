@@ -13,15 +13,15 @@ clc
 
 %----------------------CONSTANTS----------------------
 %game settings
-MAX_POINTS = 5;
+MAX_POINTS = 1;
 START_DELAY = 1;
 
 %movemment
 FRAME_DELAY = .01; %animation frame duration in seconds, .01 is good.
 MIN_BALL_SPEED = 1; %each round ball starts at this speed
 MAX_BALL_SPEED = 5; %wont accelerate past this, dont set too high or bugs.
-BALL_ACCELERATION = 0.1; %how much ball accelerates each bounce.
-PADDLE_SPEED = 2;
+BALL_ACCELERATION = 0.2; %how much ball accelerates each bounce.
+PADDLE_SPEED = 3;
 %B_FACTOR and P_FACTOR increase the ball's dx/dy, i.e. making it move
 %more horizontaly and less vertically. When the ball bounces, B_FACTOR
 %is used to calculate a random variance in the resulting ball vector.
@@ -30,7 +30,7 @@ PADDLE_SPEED = 2;
 %the paddle to the center of the ball. x value of this vector is multiplied
 %P_FACTOR. Higher P_FACTOR increases the ball's dx/dy after hitting
 %a paddle. 2 seems to work well for P_FACTOR.
-B_FACTOR = 1;
+B_FACTOR = 2;
 P_FACTOR = 2;
 %Y_FACTOR is used to fix a bug where ball would get 'stuck' bouncing
 %back and forth along the top or bottom wall. A collision with top or
@@ -81,10 +81,10 @@ MESSAGE_X = 38; %location of message displays. 38, 55 is pretty centered
 MESSAGE_Y = 55;
 MESSAGE_PAUSED = ['             GAME PAUSED' 10 10];
 MESSAGE_INTRO = [...
-  '             welcome to ' 10 10 ...
-  '         DAVE' 39 'S MATLAB PONG' 10 10 ...
-  '     first to get ' num2str(MAX_POINTS) ' points wins!' 10 10 ...
-  '    player 1:           player 2:' 10 ...
+  '             Welcome to ...' 10 10 ...
+  '             MATLAB PONG' 10 10 ...
+  '     First to get ' num2str(MAX_POINTS) ' points wins!' 10 10 ...
+  '    Player 1:           Player 2:' 10 ...
   ' use (a) and (z)     use arrow keys' 10 10 ...
   ];
 MESSAGE_CONTROLS = '  pause:(p)   reset:(r)   quit:(q)';
@@ -353,7 +353,7 @@ paddle2 = [];
       pause(START_DELAY);
       resetGame;
       if winner > 0 %somebody won
-        pauseGame(['      PLAYER ' num2str(winner) ' IS THE WINNER!!!' 10])
+        pauseGame(['      PLAYER ' num2str(winner) ' IS THE WINNER!!!' 50])
         newGame;
       else %nobody won
       end
@@ -369,7 +369,7 @@ paddle2 = [];
 %called from checkGoal when someone scores
   function pauseGame(input)
     paused = true;
-    str = '      hit any key to continue...';
+    str = '  hit any key to continue...';
     spacer = 1:PAUSE_WIDTH;
     spacer(:) = uint8(' ');
     while paused
@@ -378,7 +378,7 @@ paddle2 = [];
       set(h, 'BackgroundColor', PAUSE_BACKGROUND_COLOR)
       set(h, 'Color', PAUSE_TEXT_COLOR)
       set(h,'EdgeColor',PAUSE_EDGE_COLOR);
-      set(h, 'FontSize',5,'FontName','Courier','LineStyle','-','LineWidth',1);
+      set(h, 'FontSize',15,'FontName','Courier','LineStyle','-','LineWidth',1);
       pause(FRAME_DELAY)
       delete(h);
     end
@@ -431,6 +431,9 @@ paddle2 = [];
       case 'r'
         newGame;
       case 'q'
+        unpauseGame;
+        quitGame = true;
+      case 'escape'
         unpauseGame;
         quitGame = true;
     end

@@ -13,15 +13,15 @@ clc
 
 %----------------------CONSTANTS----------------------
 %game settings
-MAX_POINTS = 1;
+MAX_POINTS = 5;
 START_DELAY = 1;
 
 %movemment
 FRAME_DELAY = .01; %animation frame duration in seconds, .01 is good.
 MIN_BALL_SPEED = 1; %each round ball starts at this speed
-MAX_BALL_SPEED = 5; %wont accelerate past this, dont set too high or bugs.
-BALL_ACCELERATION = 0.2; %how much ball accelerates each bounce.
-PADDLE_SPEED = 3;
+MAX_BALL_SPEED = 7; %wont accelerate past this, dont set too high or bugs.
+BALL_ACCELERATION = 0.5; %how much ball accelerates each bounce.
+PADDLE_SPEED = 4;
 %B_FACTOR and P_FACTOR increase the ball's dx/dy, i.e. making it move
 %more horizontaly and less vertically. When the ball bounces, B_FACTOR
 %is used to calculate a random variance in the resulting ball vector.
@@ -54,7 +54,7 @@ GOAL_SIZE = 50;
 GOAL_TOP = (PLOT_H+GOAL_SIZE)/2;
 GOAL_BOT = (PLOT_H-GOAL_SIZE)/2;
 PADDLE_H = 28; %height
-PADDLE_W = 3; %width
+PADDLE_W = 5; %width
 PADDLE = [0 PADDLE_W PADDLE_W 0 0; PADDLE_H PADDLE_H 0 0 PADDLE_H];
 PADDLE_SPACE = 10; %space between paddle and goal
 
@@ -62,10 +62,10 @@ PADDLE_SPACE = 10; %space between paddle and goal
 FIGURE_COLOR = [0, 0, 0]; %program background
 AXIS_COLOR = [.15, .15, .15]; %the court
 CENTER_RADIUS = 20; %radius of circle in center of court.
-BALL_MARKER_SIZE = 10; %aesthetic, does not affect physics, see BALL_RADIUS
-BALL_COLOR = [.1, .7, .1];
-BALL_OUTLINE = [.7, 1, .7];
-BALL_SHAPE = 'o';
+BALL_MARKER_SIZE = 15; %aesthetic, does not affect physics, see BALL_RADIUS
+BALL_COLOR = 'g';%[.1, .7, .1];
+BALL_OUTLINE = 'g';%[.7, 1, .7];
+BALL_SHAPE = '*';
 PADDLE_LINE_WIDTH = 2;
 WALL_COLOR = [.3, .3, .8]; %format string for drawing walls
 PADDLE_COLOR = [1, .5, 0];
@@ -87,7 +87,7 @@ MESSAGE_INTRO = [...
   '    Player 1:           Player 2:' 10 ...
   ' use (a) and (z)     use arrow keys' 10 10 ...
   ];
-MESSAGE_CONTROLS = '  pause:(p)   reset:(r)   quit:(q)';
+MESSAGE_CONTROLS = '  pause:(p)   reset:(r)   quit:(q)/(esc)';
 
 %----------------------VARIABLES----------------------
 fig = []; %main program figure
